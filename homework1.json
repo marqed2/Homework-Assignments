@@ -1,0 +1,30 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract BinaryConverter {
+    function stringToDecimal(string memory binaryString) public pure returns (uint256) {
+        bytes memory binaryBytes = bytes(binaryString);
+        uint256 decimalResult = 0;
+
+        for (uint256 i = binaryBytes.length; i > 0; i--) {
+            if (binaryBytes[i - 1] == "1") {
+                decimalResult += 2**(binaryBytes.length - i);
+            }
+        }
+
+        return decimalResult;
+    }
+}
+
+contract BitwiseOperations {
+    function getBits(uint8 input) public pure returns (uint8[] memory) {
+        uint8[] memory result = new uint8[](8);
+
+        for (uint8 i = 0; i < 8; i++) {
+            uint8 mask = 1 << i;
+            result[i] = input & mask;
+        }
+
+        return result;
+    }
+}
